@@ -1,0 +1,325 @@
+{
+  "name": "RAG",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        192,
+        -112
+      ],
+      "id": "ee64fd82-bac8-4136-b026-627a6e06b21b",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "1hNvFQWxavy7yjyrJbBIChtyhTSWIhOtM",
+          "mode": "list",
+          "cachedResultName": "Bot-campus-Offical-docs.pdf",
+          "cachedResultUrl": "https://drive.google.com/file/d/1hNvFQWxavy7yjyrJbBIChtyhTSWIhOtM/view?usp=drivesdk"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        400,
+        -112
+      ],
+      "id": "bcd066dc-1f5c-49c3-8daa-0ddded37fdd1",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "RiIjOa1nXEUVZuae",
+          "name": "Google Drive account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        576,
+        -112
+      ],
+      "id": "2bca38c7-4876-48f5-92eb-2b4dc46cbd36",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "s93V3qSRWFCx463i",
+          "name": "Vector-DB"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        528,
+        112
+      ],
+      "id": "fdc30133-50f0-4d40-abf1-3175b929efd8",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "gu3dB7v46IeeSEes",
+          "name": "MY account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        704,
+        96
+      ],
+      "id": "6efd4caf-c53b-4d49-9e97-58962f79f6e5",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1248,
+        -240
+      ],
+      "id": "d5343fb8-683b-41a6-be9b-073f2dbb7ee3",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-oss-120b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        -64
+      ],
+      "id": "a2214f57-ee90-4cbd-b3a8-61d8d9f0656a",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "dKvLdxV5YstwbK4u",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Get the Data from vector Database explore documents and response.",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        1312,
+        32
+      ],
+      "id": "9cb4cf90-e167-43e8-bce6-d5e964da29b1",
+      "name": "Supabase Vector Store1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "s93V3qSRWFCx463i",
+          "name": "Vector-DB"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1312,
+        208
+      ],
+      "id": "d5583b44-d7c9-4dcb-bde1-c28eacb539b2",
+      "name": "Embeddings Google Gemini1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "gu3dB7v46IeeSEes",
+          "name": "MY account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# DOCUMENTS convert's Into  VECTOR'S",
+        "height": 560,
+        "width": 848,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        96,
+        -288
+      ],
+      "typeVersion": 1,
+      "id": "35c4a4bb-172f-43c9-afdc-da443af448f0",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# RAG Agent",
+        "height": 720,
+        "width": 656,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1008,
+        -336
+      ],
+      "typeVersion": 1,
+      "id": "3d87dcd9-c9e1-453b-9198-6ec1901da373",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        1072,
+        -240
+      ],
+      "id": "63e76aee-9724-49c1-a0e3-cc007571f706",
+      "name": "When chat message received",
+      "webhookId": "9e0f2263-9dc3-43e1-84b6-9d851e3a9083"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Vector Store1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b680adeb-dd76-46d7-b122-0cf074525558",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d7ad6c4ea91a1987afb780c755fd814280f13ca6d71fb60db59c59cd486300e2"
+  },
+  "id": "Azjp5vLwBNLryWTD",
+  "tags": []
+}
