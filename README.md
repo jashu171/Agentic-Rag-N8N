@@ -1,10 +1,13 @@
-# Retrieval-Augmented Generation (RAG) — Advanced Techniques
+# Retrieval-Augmented Generation (RAG) Introduction 
 
 Retrieval-Augmented Generation (RAG) is revolutionizing the way we combine information retrieval with generative AI. This repository showcases a curated collection of advanced techniques designed to supercharge your RAG systems, enabling them to deliver more accurate, contextually relevant, and comprehensive responses.
 
+![](01.RAG-setup-Vector-DB/images/RAG-1.png)
+
+
 Our goal is to provide a valuable resource for researchers and practitioners looking to push the boundaries of what's possible with RAG. By fostering a collaborative environment, we aim to accelerate innovation in this exciting field.
 
-![](/images/RAG-1.png)
+![](01.RAG-setup-Vector-DB/images/RAG-3.png)
 
 # Supabase Vector DB + n8n - steup 
 
