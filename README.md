@@ -26,7 +26,7 @@ Create a production‑ready **vector table** on Supabase (Postgres + `pgvector`)
 
 1. Open <https://supabase.com/> and **Sign in**.
 2. Click **Create new project**. Choose a **Project name**, set a **strong password**, and pick a **region** closest to your users.  
-   ![Create project](images/Creating-New-project.png)
+   ![Create project](01.RAG-setup-Vector-DB/images/Creating-New-project.png)
 
 ---
 
@@ -34,7 +34,7 @@ Create a production‑ready **vector table** on Supabase (Postgres + `pgvector`)
 
 1. In the left sidebar, go to **Project Settings → Data API**.
 2. Copy the **URL** (Project URL). You’ll paste this into n8n as the **Host**.  
-   ![Data API - Host URL](images/Superbase-host-url.png)
+   ![Data API - Host URL](01.RAG-setup-Vector-DB/images/Superbase-host-url.png)
 
 > Tip: The URL looks like `https://xxxxxx.supabase.co`
 
@@ -44,7 +44,7 @@ Create a production‑ready **vector table** on Supabase (Postgres + `pgvector`)
 
 1. Go to **Project Settings → API Keys**.
 2. Under **Legacy API Keys** or **API Keys**, click **Reveal** for **service_role (secret)** and **copy** it.  
-   ![Service role secret](images/secret-key.png)
+   ![Service role secret](01.RAG-setup-Vector-DB/images/secret-key.png)
 
 > ⚠️ Security: Treat this key like a password. Use it only on trusted servers (like n8n), not in browsers or public repos.
 
@@ -102,17 +102,17 @@ $$;
 ```
 
 > Paste the code in the editor shown like this:  
-![Paste SQL here](images/Vector-BD-code-paste-here.png)
+![Paste SQL here](01.RAG-setup-Vector-DB/images/Vector-BD-code-paste-here.png)
 
 If it succeeds, you’ll see a message similar to **“Success. No rows returned.”**  
-![Vector table created](images/Vector-table-created.png)
+![Vector table created](01.RAG-setup-Vector-DB/images/Vector-table-created.png)
 
 ---
 
 ## 7) Verify the **documents** table exists
 
 Open **Table Editor** and confirm you can see **`documents`** with columns `id`, `content`, `metadata`, `embedding`.  
-![Table visible](images/Table-craeted-checkin.png)
+![Table visible](01.RAG-setup-Vector-DB/images/Table-craeted-checkin.png)
 
 > If you see a badge like **Unrestricted**, that’s just the quick status in the UI. For production, review **RLS** policies.
 
@@ -126,7 +126,7 @@ Open **Table Editor** and confirm you can see **`documents`** with columns `id`,
    - **Service Role Secret**: Paste the key from Step 5
    - **Allowed HTTP Request Domains**: `All` (or restrict to your use case)
 3. Click **Test** → **Connection tested successfully** → **Save**.  
-   ![n8n credential connected](images/N8n-superbase-connected.png)
+   ![n8n credential connected](01.RAG-setup-Vector-DB/images/N8n-superbase-connected.png)
 
 ---
 
